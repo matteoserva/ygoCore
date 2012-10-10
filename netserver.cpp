@@ -13,6 +13,7 @@ char NetServer::net_server_read[0x2000];
 char NetServer::net_server_write[0x2000];
 unsigned short NetServer::last_sent = 0;
 
+<<<<<<< HEAD
 
 void NetServer::Initduel(int bDuel_mode)
 {
@@ -55,6 +56,8 @@ void NetServer::Initduel(int bDuel_mode)
 
 
 
+=======
+>>>>>>> origin/master
 bool NetServer::StartServer(unsigned short port) {
 	if(net_evbase)
 		return false;

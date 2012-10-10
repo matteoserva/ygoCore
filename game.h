@@ -68,7 +68,10 @@ class Game {
 public:
 	bool Initialize();
 	void MainLoop();
+<<<<<<< HEAD
 	void Game::MainServerLoop(int bDuel_mode);
+=======
+>>>>>>> origin/master
 	void BuildProjectionMatrix(irr::core::matrix4& mProjection, f32 left, f32 right, f32 bottom, f32 top, f32 znear, f32 zfar);
 	void SetStaticText(irr::gui::IGUIStaticText* pControl, u32 cWidth, irr::gui::CGUITTFont* font, wchar_t* text);
 	void RefreshDeck(irr::gui::IGUIComboBox* cbDeck);
@@ -352,6 +355,7 @@ public:
 };
 
 extern Game* mainGame;
+<<<<<<< HEAD
 extern unsigned short aServerPort;
 extern unsigned int lflist;
 extern unsigned char rule;
@@ -362,6 +366,8 @@ extern bool no_shuffle_deck;
 extern unsigned int start_lp;
 extern unsigned char start_hand;
 extern unsigned char draw_count;
+=======
+>>>>>>> origin/master
 
 }
 
