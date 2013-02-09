@@ -9,7 +9,7 @@
 
 namespace ygo {
 
-<<<<<<< HEAD
+
 extern unsigned int lflist;
 extern unsigned char rule;
 extern unsigned char mode;
@@ -20,8 +20,7 @@ extern unsigned int start_lp;
 extern unsigned char start_hand;
 extern unsigned char draw_count;
 
-=======
->>>>>>> origin/master
+
 TagDuel::TagDuel() {
 	for(int i = 0; i < 4; ++i) {
 		players[i] = 0;
@@ -58,7 +57,7 @@ void TagDuel::JoinGame(DuelPlayer* dp, void* pdata, bool is_creater) {
 			NetServer::DisconnectPlayer(dp);
 			return;
 		}
-<<<<<<< HEAD
+
 		if (true){
 			host_info.start_hand=5;
 			host_info.start_lp=8000;
@@ -92,16 +91,6 @@ void TagDuel::JoinGame(DuelPlayer* dp, void* pdata, bool is_creater) {
 				NetServer::SendPacketToPlayer(dp, STOC_ERROR_MSG, scem);
 				return;
 			}
-=======
-		wchar_t jpass[20];
-		BufferIO::CopyWStr(pkt->pass, jpass, 20);
-		if(wcscmp(jpass, pass)) {
-			STOC_ErrorMsg scem;
-			scem.msg = ERRMSG_JOINERROR;
-			scem.code = 1;
-			NetServer::SendPacketToPlayer(dp, STOC_ERROR_MSG, scem);
-			return;
->>>>>>> origin/master
 		}
 	}
 	dp->game = this;

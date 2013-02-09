@@ -3,18 +3,18 @@
 #include "../ocgcore/card.h"
 #include <algorithm>
 #include "lzma/LzmaLib.h"
-<<<<<<< HEAD
+
 #include   <sstream>
 
 namespace ygo {
 
 extern unsigned short aServerPort;
 
-=======
 
-namespace ygo {
 
->>>>>>> origin/master
+
+
+
 Replay::Replay() {
 	is_recording = false;
 	is_replaying = false;
@@ -25,7 +25,7 @@ Replay::~Replay() {
 	delete replay_data;
 	delete comp_data;
 }
-<<<<<<< HEAD
+
 
 
 std::wstring SA2W(std::string& strA)
@@ -62,13 +62,7 @@ if(is_recording)
     std::wstring comID =comPrefix+ SA2W(ssss)+L"Replay.yrp" ;
 
 	recording_fp = CreateFileW(comID.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_FLAG_WRITE_THROUGH, NULL);
-=======
-void Replay::BeginRecord() {
-#ifdef _WIN32
-	if(is_recording)
-		CloseHandle(recording_fp);
-	recording_fp = CreateFileW(L"./replay/_LastReplay.yrp", GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_FLAG_WRITE_THROUGH, NULL);
->>>>>>> origin/master
+
 	if(recording_fp == INVALID_HANDLE_VALUE)
 		return;
 #else

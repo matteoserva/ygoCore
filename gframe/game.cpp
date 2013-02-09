@@ -20,7 +20,7 @@ namespace ygo {
 
 Game* mainGame;
 
-<<<<<<< HEAD
+
 unsigned short aServerPort;
 unsigned int lflist;
 unsigned char rule;
@@ -43,7 +43,7 @@ void Game::MainServerLoop(int bDuel_mode) {
 }
 
 =======
->>>>>>> origin/master
+
 bool Game::Initialize() {
 	LoadConfig();
 	irr::SIrrlichtCreationParameters params = irr::SIrrlichtCreationParameters();

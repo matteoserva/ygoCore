@@ -9,7 +9,7 @@
 
 namespace ygo {
 
-<<<<<<< HEAD
+
 extern unsigned int lflist;
 extern unsigned char rule;
 extern unsigned char mode;
@@ -22,7 +22,7 @@ extern unsigned char draw_count;
 bool runasserver = true;
 
 =======
->>>>>>> origin/master
+
 SingleDuel::SingleDuel(bool is_match) {
 	match_mode = is_match;
 	match_kill = 0;
@@ -71,7 +71,7 @@ void SingleDuel::JoinGame(DuelPlayer* dp, void* pdata, bool is_creater) {
 			NetServer::DisconnectPlayer(dp);
 			return;
 		}
-<<<<<<< HEAD
+
 		
 		if (runasserver){
 			host_info.start_hand=5;
@@ -98,7 +98,7 @@ void SingleDuel::JoinGame(DuelPlayer* dp, void* pdata, bool is_creater) {
 		}else
 		{
 =======
->>>>>>> origin/master
+
 		wchar_t jpass[20];
 		BufferIO::CopyWStr(pkt->pass, jpass, 20);
 		if(wcscmp(jpass, pass)) {
@@ -108,10 +108,10 @@ void SingleDuel::JoinGame(DuelPlayer* dp, void* pdata, bool is_creater) {
 			NetServer::SendPacketToPlayer(dp, STOC_ERROR_MSG, scem);
 			return;
 		}
-<<<<<<< HEAD
+
 		}
 =======
->>>>>>> origin/master
+
 	}
 	dp->game = this;
 	if(!players[0] && !players[1] && observers.size() == 0)

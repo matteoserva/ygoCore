@@ -13,7 +13,7 @@ char NetServer::net_server_read[0x2000];
 char NetServer::net_server_write[0x2000];
 unsigned short NetServer::last_sent = 0;
 
-<<<<<<< HEAD
+
 
 void NetServer::Initduel(int bDuel_mode)
 {
@@ -36,7 +36,8 @@ void NetServer::Initduel(int bDuel_mode)
 		if(pkt->info.mode > 2)
 			pkt->info.mode = 0;
 		unsigned int hash = 0;
-
+		
+		pkt->info.lflist = deckManager._lfList[lflist].hash;
 
 		for(auto lfit = deckManager._lfList.begin(); lfit != deckManager._lfList.end(); ++lfit) {
 			if(pkt->info.lflist == lfit->hash) {
@@ -56,8 +57,7 @@ void NetServer::Initduel(int bDuel_mode)
 
 
 
-=======
->>>>>>> origin/master
+
 bool NetServer::StartServer(unsigned short port) {
 	if(net_evbase)
 		return false;

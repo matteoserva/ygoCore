@@ -4,10 +4,10 @@
 
 int enable_log = 0;
 bool exit_on_return = false;
-<<<<<<< HEAD
+
 bool runasserver = true;
-=======
->>>>>>> origin/master
+
+
 
 int main(int argc, char* argv[]) {
 #ifdef _WIN32
@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 	evthread_use_pthreads();
 #endif //_WIN32
 	ygo::Game _game;
-<<<<<<< HEAD
+
 	if (runasserver){
 	    ygo::aServerPort=7911;
 		ygo::aServerPort=atoi(argv[1]);
@@ -50,8 +50,8 @@ int main(int argc, char* argv[]) {
 		
 		return 0;
 	}
-=======
->>>>>>> origin/master
+
+
 	ygo::mainGame = &_game;
 	if(!ygo::mainGame->Initialize())
 		return 0;
