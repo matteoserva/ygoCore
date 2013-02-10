@@ -62,7 +62,7 @@ struct FadingUnit {
 	irr::core::vector2di fadingLR;
 	irr::core::vector2di fadingDiff;
 };
-
+/*
 class Game {
 
 public:
@@ -353,7 +353,7 @@ public:
 
 };
 
-extern Game* mainGame;
+extern Game* mainGame;*/
 extern unsigned short aServerPort;
 extern unsigned int lflist;
 extern unsigned char rule;

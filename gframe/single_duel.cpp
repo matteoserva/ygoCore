@@ -1489,7 +1489,6 @@ int SingleDuel::MessageHandler(long fduel, int type) {
 	if(enable_log == 1) {
 		wchar_t wbuf[1024];
 		BufferIO::DecodeUTF8(msgbuf, wbuf);
-		mainGame->AddChatMsg(wbuf, 9);
 	} else if(enable_log == 2) {
 		FILE* fp = fopen("error.log", "at");
 		if(!fp)

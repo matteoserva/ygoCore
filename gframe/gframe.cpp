@@ -1,14 +1,32 @@
 #include "config.h"
 #include "game.h"
 #include <event2/thread.h>
+#include "data_manager.h"
+#include "deck_manager.h"
+#include "netserver.h"
 
+#ifndef WIN32
+
+#define Sleep(x) usleep(1000*x)
+#endif
 int enable_log = 0;
 bool exit_on_return = false;
 
 bool runasserver = true;
+const unsigned short PRO_VERSION = 0x12f0;
 
-
-
+namespace ygo{
+unsigned short aServerPort;
+unsigned int lflist;
+unsigned char rule;
+unsigned char mode;
+bool enable_priority;
+bool no_check_deck;
+bool no_shuffle_deck;
+unsigned int start_lp;
+unsigned char start_hand;
+unsigned char draw_count;
+}
 int main(int argc, char* argv[]) {
 #ifdef _WIN32
 	WORD wVersionRequested;
@@ -19,7 +37,7 @@ int main(int argc, char* argv[]) {
 #else
 	evthread_use_pthreads();
 #endif //_WIN32
-	ygo::Game _game;
+	//ygo::Game _game;
 
 	if (runasserver){
 	    ygo::aServerPort=7911;
@@ -45,50 +63,17 @@ int main(int argc, char* argv[]) {
 			ygo::start_hand=atoi(argv[9]);
 			ygo::draw_count=atoi(argv[10]);
 		}
-		ygo::mainGame = &_game;
-		ygo::mainGame->MainServerLoop(ygo::mode);
-		
+		ygo::deckManager.LoadLFList();
+    ygo::dataManager.LoadDB("cards.cdb");
+    ygo::NetServer::Initduel(ygo::mode);
+    ygo::NetServer::StartServer(ygo::aServerPort);
+    while(ygo::NetServer::net_evbase)
+    {
+        Sleep(200);
+    }
 		return 0;
 	}
 
 
-	ygo::mainGame = &_game;
-	if(!ygo::mainGame->Initialize())
-		return 0;
-
-	if(argc >= 2) {
-		/*command line args:
-		 * -j: join host (host info from system.conf)
-		 * -d: deck edit
-		 * -r: replay */
-		if(!strcmp(argv[1], "-j") || !strcmp(argv[1], "-d") || !strcmp(argv[1], "-r")) {
-			exit_on_return = true;
-			irr::SEvent event;
-			event.EventType = irr::EET_GUI_EVENT;
-			event.GUIEvent.EventType = irr::gui::EGET_BUTTON_CLICKED;
-			if(!strcmp(argv[1], "-j")) {
-				event.GUIEvent.Caller = ygo::mainGame->btnLanMode;
-				ygo::mainGame->device->postEventFromUser(event);
-				//TODO: wait for wLanWindow show. if network connection faster than wLanWindow, wLanWindow will still show on duel scene.
-				event.GUIEvent.Caller = ygo::mainGame->btnJoinHost;
-				ygo::mainGame->device->postEventFromUser(event);
-			} else if(!strcmp(argv[1], "-d")) {
-				event.GUIEvent.Caller = ygo::mainGame->btnDeckEdit;
-				ygo::mainGame->device->postEventFromUser(event);
-			} else if(!strcmp(argv[1], "-r")) {
-				event.GUIEvent.Caller = ygo::mainGame->btnReplayMode;
-				ygo::mainGame->device->postEventFromUser(event);
-				ygo::mainGame->lstReplayList->setSelected(0);
-				event.GUIEvent.Caller = ygo::mainGame->btnLoadReplay;
-				ygo::mainGame->device->postEventFromUser(event);
-			}
-		}
-	}
-	ygo::mainGame->MainLoop();
-#ifdef _WIN32
-	WSACleanup();
-#else
-
-#endif //_WIN32
 	return EXIT_SUCCESS;
 }
