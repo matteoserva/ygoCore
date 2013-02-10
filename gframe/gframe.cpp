@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
 		ygo::aServerPort=atoi(argv[1]);
 		ygo::lflist=atoi(argv[2]);
 		ygo::start_hand=0;
-		if (argc>2) {
+		if (argc>3) {
 			ygo::rule=atoi(argv[3]);
 			ygo::mode=atoi(argv[4]);
 			if (argv[5][0]=='T')

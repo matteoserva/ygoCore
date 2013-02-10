@@ -21,7 +21,6 @@ extern unsigned char start_hand;
 extern unsigned char draw_count;
 bool runasserver = true;
 
-=======
 
 SingleDuel::SingleDuel(bool is_match) {
 	match_mode = is_match;
@@ -97,7 +96,6 @@ void SingleDuel::JoinGame(DuelPlayer* dp, void* pdata, bool is_creater) {
 			}
 		}else
 		{
-=======
 
 		wchar_t jpass[20];
 		BufferIO::CopyWStr(pkt->pass, jpass, 20);
@@ -110,7 +108,6 @@ void SingleDuel::JoinGame(DuelPlayer* dp, void* pdata, bool is_creater) {
 		}
 
 		}
-=======
 
 	}
 	dp->game = this;

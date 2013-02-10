@@ -12,9 +12,10 @@
 #ifndef WIN32
 #include <sys/types.h>
 #include <dirent.h>
+#define Sleep(x) usleep(1000*x)
 #endif
 
-const unsigned short PRO_VERSION = 0x12e0;
+const unsigned short PRO_VERSION = 0x12f0;
 
 namespace ygo {
 
@@ -34,7 +35,7 @@ unsigned char draw_count;
 
 void Game::MainServerLoop(int bDuel_mode) {
 	deckManager.LoadLFList();
-    dataManager.LoadDates("cards.cdb");
+    dataManager.LoadDB("cards.cdb");
     NetServer::Initduel(bDuel_mode);
     NetServer::StartServer(aServerPort);
 	while(NetServer::net_evbase) {
@@ -42,7 +43,6 @@ void Game::MainServerLoop(int bDuel_mode) {
     }
 }
 
-=======
 
 bool Game::Initialize() {
 	LoadConfig();
@@ -74,7 +74,7 @@ bool Game::Initialize() {
 	imageManager.SetDevice(device);
 	if(!imageManager.Initial())
 		return false;
-	if(!dataManager.LoadDates("cards.cdb"))
+	if(!dataManager.LoadDB("cards.cdb"))
 		return false;
 	env = device->getGUIEnvironment();
 	numFont = irr::gui::CGUITTFont::createTTFont(env, gameConf.numfont, 16);
