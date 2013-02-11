@@ -19,6 +19,7 @@ extern bool no_shuffle_deck;
 extern unsigned int start_lp;
 extern unsigned char start_hand;
 extern unsigned char draw_count;
+extern unsigned int game_timer;
 bool runasserver = true;
 
 
@@ -71,7 +72,7 @@ void SingleDuel::JoinGame(DuelPlayer* dp, void* pdata, bool is_creater) {
 			return;
 		}
 
-		
+
 		if (runasserver){
 			host_info.start_hand=5;
 			host_info.start_lp=8000;
@@ -92,7 +93,7 @@ void SingleDuel::JoinGame(DuelPlayer* dp, void* pdata, bool is_creater) {
 		        host_info.no_shuffle_deck=ygo::no_shuffle_deck;
 		        host_info.enable_priority=ygo::enable_priority;
 		        host_info.rule=ygo::rule;
-		        host_info.time_limit=180;
+		        host_info.time_limit=ygo::game_timer;
 			}
 		}else
 		{

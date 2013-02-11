@@ -26,6 +26,7 @@ bool no_shuffle_deck;
 unsigned int start_lp;
 unsigned char start_hand;
 unsigned char draw_count;
+unsigned int game_timer;
 }
 int main(int argc, char* argv[]) {
 #ifdef _WIN32
@@ -62,11 +63,12 @@ int main(int argc, char* argv[]) {
 			ygo::start_lp=atoi(argv[8]);
 			ygo::start_hand=atoi(argv[9]);
 			ygo::draw_count=atoi(argv[10]);
+			ygo::game_timer=atoi(argv[11]);
 		}
 		ygo::deckManager.LoadLFList();
     ygo::dataManager.LoadDB("cards.cdb");
-    ygo::NetServer::Initduel(ygo::mode);
     ygo::NetServer::StartServer(ygo::aServerPort);
+    ygo::NetServer::Initduel(ygo::mode);
     while(ygo::NetServer::net_evbase)
     {
         Sleep(200);

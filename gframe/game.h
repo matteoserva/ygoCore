@@ -364,6 +364,7 @@ extern bool no_shuffle_deck;
 extern unsigned int start_lp;
 extern unsigned char start_hand;
 extern unsigned char draw_count;
+extern unsigned int game_timer;
 
 }
 
